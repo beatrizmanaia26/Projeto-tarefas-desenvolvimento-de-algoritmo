@@ -9,11 +9,11 @@
 //*Lt-> alterar valor só na funcao
 int cria_tarefa(lista_tarefas *Lt){
     printf("Digite a categoria da tarefa: ");
-    scanf("%s", Lt->Tarefas[quantidade]->categoria);
+    scanf("%s", Lt->Tarefas[Lt->quantidade].categoria);
     printf("Digite a descricao da tarefa: ");
-    scanf("%s", Lt[Lt->quantidade]->descricao);
+    scanf("%s", Lt->Tarefas[Lt->quantidade].descricao);
     printf("Digite a prioridade da tarefa (0-10): ");
-    scanf("%d", &Lt[Lt->quantidade]->prioridade);
+    scanf("%d", &Lt->Tarefas[Lt->quantidade].prioridade);
 
     return 0;
 //return 0 funciono de return 1 deu errado
