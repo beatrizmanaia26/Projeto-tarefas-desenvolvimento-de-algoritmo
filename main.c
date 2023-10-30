@@ -22,6 +22,8 @@ int main(){
         deleta_tarefa(&Lt);
     }else if(opcao == 3){
         listar_tarefas(Lt);
+    }else if (opcao == 4){
+      alterar_tarefa(&Lt);
     }else{
         printf("Opcao escolhida nao existe\n");
     }

@@ -65,8 +65,71 @@ int listar_tarefas(lista_tarefas Lt){ //quando for a copia do struct usa o ponto
     return 0;
 }
 
+int alterar_tarefa(lista_tarefas *Lt){
+  int alterar = 0;
+  int tarefa;
+  int estado;
+  int prioridade;
+  printf("Digite o número da tarefa que deseja alterar: ");
+  scanf("%d",&alterar);
+  
+  if (Lt->quantidade == 0 || Lt->quantidade < alterar){   
+    printf("Falha ao encontrar a tarefa :( \n ");
+    return 1;
+  }
+    for (int buscar = alterar - 1; buscar < Lt->quantidade; buscar ++ ){
+
+    printf("Digite o que da tarefa deseja alterar\n1)categoria, 2)descricao, 3)prioridade, 4)estado): ");
+    printf("\n");
+    scanf("%d", &tarefa);
+    //MUDO E AS VEZES PEDE O Q DA TAREFA QR MUDAR AO INVES D MOSTRA O MENU
+    if (tarefa == 1){
+      printf("Digite a nova categoria: ");
+      scanf("%s", Lt->Tarefas[buscar].categoria);
+      printf("Nova categoria: %s\n", Lt->Tarefas[buscar].categoria);
+      return 0;
+    }
+    else if (tarefa == 2){
+      printf("Digite a nova descricao: ");
+      scanf("%s", Lt->Tarefas[buscar].descricao);
+      printf("Nova desrição: %s\n", Lt->Tarefas[buscar].descricao);
+      return 0;
+    }
+    else if (tarefa == 3){
+      printf("Digite a nova prioridade: ");
+      scanf("%d", &prioridade);
+      if (prioridade == 0 || prioridade == 1 || prioridade == 2 || prioridade == 3 || prioridade == 4 || prioridade == 5 || prioridade == 6 || prioridade == 7 || prioridade == 8 || prioridade == 9){
+        Lt->Tarefas[buscar].prioridade = prioridade;
+        printf("Nova prioridade: %d\n", Lt->Tarefas[buscar].prioridade);
+        return 0;
+      }
+      else{
+        printf("Prioridade invalida");
+        return 1;
+      }
+    }
+    else if (tarefa == 4){
+      printf("Digite o novo estado: 0-Não iniciada, 1-Realizando, 2- Completa: ");
+      scanf("%d", &estado);
+      if (estado == 0 || estado == 1 || estado == 2){
+        Lt->Tarefas[buscar].estado = estado;
+        printf("Novo estado: %d\n", Lt->Tarefas[buscar].estado);
+        return 0;
+        }
+      else{
+        printf("Estado invalido\n");
+        return 1;
+          }
+    } 
+    else {
+      printf("Essa opção nao existe\n");
+      return 1;
+      }
+  } 
+}
+
 void print_menu(){
-    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n5.Digite 0 para sair </3 \n");   
+    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\nDigite 0 para sair </3 \n");   
 }
 
 int salva_tarefa(lista_tarefas Lt, char nome[]){

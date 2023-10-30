@@ -16,6 +16,7 @@ typedef enum{N_INICIADA,REALIZANDO,COMPLETA} estado;
 int cria_tarefa(lista_tarefas *Lt);
 int deleta_tarefa(lista_tarefas *Lt);
 int listar_tarefas(lista_tarefas Lt);
+int alterar_tarefa(lista_tarefas *Lt);
 void print_menu(); 
 int ler_arquivo(lista_tarefas *Lt, char nome[]);
 int salva_tarefa(lista_tarefas Lt, char nome[]);
