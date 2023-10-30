@@ -3,29 +3,35 @@
 #include "projeto1.h"
 
 //*Lt-> alterar valor dentro e fora da funcao
-int cria_tarefa(lista_tarefas *Lt){ // usa ponteiro pra funcao -> usa seta 
-       int qnt = 0; //só pra funcao
-    if (Lt->quantidade < 100){
-      printf("Digite a categoria da tarefa: ");
-      scanf("%s", Lt->Tarefas[Lt->quantidade].categoria);
-      printf("Digite a descricao da tarefa: ");
-      scanf("%s", Lt->Tarefas[Lt->quantidade].descricao);
-      printf("Digite a prioridade da tarefa (0-9): ");
+int cria_tarefa(lista_tarefas *Lt){
+  // usa ponteiro pra funcao -> usa seta 
+  int qnt = 0; //só pra funcao
+  if (Lt->quantidade < 100){
+    printf("Digite a categoria da tarefa: ");
+    scanf("%s", Lt->Tarefas[Lt->quantidade].categoria);
+    printf("Digite a descricao da tarefa: ");
+    scanf("%s", Lt->Tarefas[Lt->quantidade].descricao);
+    printf("Digite a prioridade da tarefa (0-9): ");
        //prioridade de 0 a 9 pois para perguntar novamente a prioridade se o usuario nao digitar um numero precisa usar a tabela ascii e ela vai de 0 a 9 
-      scanf("%d",&Lt->Tarefas[Lt->quantidade].prioridade); 
-      qnt += 1; 
-      printf("Digite o estado da sua tarefa: \n");
-      printf("1-Não iniciada, 2-Realizando, 3- Completa: ");
+    scanf("%d",&Lt->Tarefas[Lt->quantidade].prioridade); 
+    printf("Digite o estado da sua tarefa: \n");
+    printf("0-Não iniciada, 1-Realizando, 2- Completa: ");
+    scanf("%d", &Lt->Tarefas[Lt->quantidade].estado);
+    while(Lt->Tarefas[Lt->quantidade].estado < 0 || Lt->Tarefas[Lt->quantidade].estado > 2){
+      printf("Digite um estado valido: ");
       scanf("%d", &Lt->Tarefas[Lt->quantidade].estado);
-      Lt -> quantidade = Lt -> quantidade + 1;  //funciona dentro e fora da funcao  
     }
-    if(qnt == 1){                            
-        printf("Tarefa criada com sucesso!\n");       
-        return 0;                                   
-    }                                               
-    if(qnt != 1){                            
-        printf("Erro ao criar tarefa\n");                 
-        return 1;                                                        
+    qnt += 1; 
+    Lt -> quantidade = Lt -> quantidade + 1;  //funciona dentro e fora da funcao  
+    //FAZER CODIGO PRA C ESTADO TIVER ERRADO NAO CONTABILIZAR A TAREFA
+    }
+    if(qnt == 1){                           
+      printf("Tarefa criada com sucesso!\n");       
+      return 0;                           
+    }                                      
+    if(qnt != 1){                          
+      printf("Erro ao criar tarefa\n");   
+      return 1;                           
     }                 
 }
 
