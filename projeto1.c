@@ -134,8 +134,23 @@ int alterar_tarefa(lista_tarefas *Lt){
   } 
 }
 
+void filtrar_por_prioridade(lista_tarefas Lt){
+  int filtrarPrior;
+  printf("Digite a prioridade que deseja filtrar: ");
+  scanf("%d",&filtrarPrior);
+  if (Lt.quantidade == 0 || Lt.Tarefas[Lt.quantidade].prioridade != filtrarPrior){   
+      printf("Falha ao encontrar a tarefa(s) com essa prioridade :( \n ");
+    }
+   for (int buscarPrioridade = 0; buscarPrioridade < 10; buscarPrioridade++ ){
+     if (Lt.Tarefas[buscarPrioridade].prioridade == filtrarPrior){
+       printf("\n");
+       printf("\n%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", buscarPrioridade+1,Lt.Tarefas[buscarPrioridade].categoria, Lt.Tarefas[buscarPrioridade].descricao, Lt.Tarefas[buscarPrioridade].prioridade, Lt.Tarefas[buscarPrioridade].estado);
+     }
+  } 
+}
+
 void print_menu(){
-    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\nDigite 0 para sair </3 \n");   
+    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\nDigite 0 para sair </3 \n");   
 }
 
 int salva_tarefa(lista_tarefas Lt, char nome[]){

@@ -24,6 +24,8 @@ int main(){
         listar_tarefas(Lt);
     }else if (opcao == 4){
       alterar_tarefa(&Lt);
+    }else if(opcao == 5){
+       filtrar_por_prioridade(Lt);
     }else{
         printf("Opcao escolhida nao existe\n");
     }
