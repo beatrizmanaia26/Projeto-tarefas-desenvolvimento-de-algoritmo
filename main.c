@@ -26,7 +26,9 @@ int main(){
       alterar_tarefa(&Lt);
     }else if(opcao == 5){
        filtrar_por_prioridade(Lt);
-    }else{
+    }else if(opcao == 6){
+      filtrar_por_estado(Lt);
+     }else{
         printf("Opcao escolhida nao existe\n");
     }
     }while(opcao != 0); //loop
