@@ -28,6 +28,8 @@ int main(){
        filtrar_por_prioridade(Lt);
     }else if(opcao == 6){
       filtrar_por_estado(Lt);
+    }else if(opcao == 7){
+      filtrar_por_categoria(Lt);
     }else{
         printf("Opcao escolhida nao existe\n");
     }

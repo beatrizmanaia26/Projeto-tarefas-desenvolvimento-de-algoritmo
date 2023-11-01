@@ -171,7 +171,7 @@ void filtrar_por_estado(lista_tarefas Lt){
 
 
 void print_menu(){
-    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\n6.Filtrar tarefa por estado\nDigite 0 para sair </3 \n");   
+    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\n6.Filtrar tarefa por estado\n7.Filtrar tarefa por categoria\nDigite 0 para sair </3 \n");   
 }
 
 int salva_tarefa(lista_tarefas Lt, char nome[]){
