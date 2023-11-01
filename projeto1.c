@@ -139,15 +139,17 @@ void filtrar_por_prioridade(lista_tarefas Lt){
   int filtrarPrior;
   printf("Digite a prioridade que deseja filtrar: ");
   scanf("%d",&filtrarPrior);
-  if (Lt.quantidade == 0 || Lt.Tarefas[Lt.quantidade].prioridade != filtrarPrior){   
-      printf("Falha ao encontrar a tarefa(s) com essa prioridade :( \n ");
-    }
-   for (int buscarPrioridade = 0; buscarPrioridade < 10; buscarPrioridade++ ){
+  int contador = 0;
+   for (int buscarPrioridade = 0; buscarPrioridade < Lt.quantidade; buscarPrioridade++ ){
      if (Lt.Tarefas[buscarPrioridade].prioridade == filtrarPrior){
+       contador = 1;
        printf("\n");
        printf("\n%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", buscarPrioridade+1,Lt.Tarefas[buscarPrioridade].categoria, Lt.Tarefas[buscarPrioridade].descricao, Lt.Tarefas[buscarPrioridade].prioridade, Lt.Tarefas[buscarPrioridade].estado);
      }
   } 
+  if (contador == 0){
+    printf("Falha ao encontrar a tarefa(s) com essa prioridade :( \n ");
+  }
 }
 
 void print_menu(){
