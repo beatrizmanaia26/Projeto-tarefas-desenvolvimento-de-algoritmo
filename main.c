@@ -4,6 +4,9 @@
 
 int main(){
     char arquivo[]= "tarefa"; 
+    char arquivo_prioridade[] = "prioridade";
+    char arquivo_categoria[] = "categoria";
+    char arquivo_prioridade_categoria[] = "prioridadeCategoria";
     int codigo; //armazena codigo de retorno das funcoes
     lista_tarefas Lt;
     codigo = ler_arquivo(&Lt, arquivo); //chama a funcao de ler arquivo
@@ -32,6 +35,12 @@ int main(){
       filtrar_por_categoria(Lt);
     }else if (opcao == 8){
       filtrar_por_prioridade_categoria(Lt);
+    }else if(opcao == 9){
+      exportar_tarefa_prioridade(Lt);
+    }else if(opcao == 10){
+      exportar_tarefa_categoria(Lt);
+    }else if(opcao == 11){
+      exportar_tarefa_prioridade_categoria(Lt);
     }else{
         printf("Opcao escolhida nao existe\n");
     }

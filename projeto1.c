@@ -239,8 +239,87 @@ void filtrar_por_prioridade_categoria(lista_tarefas Lt){
   }
 }
 
+void exportar_tarefa_prioridade(lista_tarefas Lt){
+  FILE *f = fopen("prioridade","w");
+   int filtrarPrior;
+  if (Lt.quantidade == 0){
+      printf("Não tem tarefa para listar");
+  }
+  printf("Digite a prioridade que deseja filtrar: ");
+  scanf("%d",&filtrarPrior);
+  int contador = 0;
+  for (int buscarPrioridade = 0; buscarPrioridade < Lt.quantidade; buscarPrioridade++ ){
+    if (Lt.Tarefas[buscarPrioridade].prioridade == filtrarPrior){
+      contador = 1;
+      fprintf(f,"\n");
+      fprintf(f,"\n%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", buscarPrioridade+1,Lt.Tarefas[buscarPrioridade].categoria, Lt.Tarefas[buscarPrioridade].descricao, Lt.Tarefas[buscarPrioridade].prioridade, Lt.Tarefas[buscarPrioridade].estado);
+      }
+   } 
+   if (contador == 0){
+     fprintf(f,"Falha ao encontrar a tarefa(s) com essa prioridade :( \n ");
+   }
+   fclose(f);
+}
+
+void exportar_tarefa_categoria(lista_tarefas Lt){
+  FILE *f = fopen("categoria","w");
+    if (Lt.quantidade == 0){
+        fprintf(f,"Não tem tarefa para listar");
+    }
+      //printf("quantidade: %d \n", Lt.quantidade);
+  char filtrarCategoria[100];
+  int contador = 0;
+  printf("Digite a categoria que deseja filtrar: ");
+  scanf("%s",filtrarCategoria);
+  for (int ordem = 9; ordem >= 0 ; ordem--){
+  for (int buscarCategoria = 0; buscarCategoria < Lt.quantidade; buscarCategoria ++ ){
+
+    if (strcmp(Lt.Tarefas[buscarCategoria].categoria, filtrarCategoria) == 0){
+      if(Lt.Tarefas[buscarCategoria].prioridade == ordem){
+        contador = 1;
+        fprintf(f,"\n");
+        fprintf(f,"%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", buscarCategoria+1,Lt.Tarefas[buscarCategoria].categoria, Lt.Tarefas[buscarCategoria].descricao, Lt.Tarefas[buscarCategoria].prioridade, Lt.Tarefas[buscarCategoria].estado);  
+        }     
+     }
+    }
+   }
+    if (contador == 0){
+      printf("Falha ao encontrar a tarefa(s) com essa categoria :( \n ");
+  }
+  fclose(f);
+}
+
+void exportar_tarefa_prioridade_categoria(lista_tarefas Lt){
+  FILE *f = fopen("prioridadeCategoria","w");
+    if (Lt.quantidade == 0){
+        fprintf(f,"Não tem tarefa para listar");
+    }
+  int filtrarPrior;
+  int contador = 0;
+  printf("Digite a prioridade que deseja filtrar: ");
+  scanf("%d",&filtrarPrior);
+
+  char filtrarCategoria[100];
+  printf("Digite a categoria que deseja filtrar: ");
+  scanf("%s",filtrarCategoria);
+      //printf("quantidade: %d \n", Lt.quantidade);
+    for (int ToDo = 0; ToDo< Lt.quantidade; ToDo++ ){
+      if(strcmp(Lt.Tarefas[ToDo].categoria, filtrarCategoria) == 0){
+        if (Lt.Tarefas[ToDo].prioridade == filtrarPrior){
+          contador = 1;
+          fprintf(f,"\n");
+          fprintf(f,"\n%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", ToDo+1,Lt.Tarefas[ToDo].categoria, Lt.Tarefas[ToDo].descricao, Lt.Tarefas[ToDo].prioridade, Lt.Tarefas[ToDo].estado);
+           }
+         }
+      }
+    if (contador == 0){
+      printf("Falha ao encontrar a tarefa(s) com essa categoria e prioridade:( \n ");
+      }
+  fclose(f);
+}
+
 void print_menu(){
-    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\n6.Filtrar tarefa por estado\n7.Filtrar tarefa por categoria\n8.Filtrar tarefa por prioridade e categoria\nDigite 0 para sair </3 \n");   
+    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\n6.Filtrar tarefa por estado\n7.Filtrar tarefa por categoria\n8.Filtrar tarefa por prioridade e categoria9.Exportar tarefas por prioridade\n10.Exportar tarefas por categoria\n11.Exportar tarefas por prioridade e categoria\nDigite 0 para sair </3 \n");   
 }
 
 int salva_tarefa(lista_tarefas Lt, char nome[]){
