@@ -1,6 +1,9 @@
+
 #include <stdio.h>
 #include <string.h>
 #include "projeto1.h"
+
+//PRIORIDADE DIFERENTE DE 0 E 9 NAO RODA
 
 //*Lt-> alterar valor dentro e fora da funcao
 int cria_tarefa(lista_tarefas *Lt){
@@ -54,22 +57,31 @@ int deleta_tarefa(lista_tarefas *Lt){
     return 0;
 }
 
-//printar em ordem de prioridade: fazer dentro de if (if priporidade = 1: print prioridade)
-
-int listar_tarefas(lista_tarefas Lt){ //quando for a copia do struct usa o ponto 
-  printf("\n");
+int listar_tarefas(lista_tarefas Lt){ 
+  //quando for a copia do struct usa o ponto 
   if (Lt.quantidade == 0){
       printf("Não tem tarefa para listar");
       return 1;
   }
     //printf("quantidade: %d \n", Lt.quantidade);
   for (int ToDo = 0; ToDo< Lt.quantidade; ToDo++ ){
-      printf("%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t \n", ToDo+1,Lt.Tarefas[ToDo].categoria, Lt.Tarefas[ToDo].descricao, Lt.Tarefas[ToDo].prioridade, Lt.Tarefas[ToDo].estado); //\t = tab do teclado (formatação)
+    printf("\n");
+    printf("\n%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", ToDo+1,Lt.Tarefas[ToDo].categoria, Lt.Tarefas[ToDo].descricao, Lt.Tarefas[ToDo].prioridade, Lt.Tarefas[ToDo].estado); //\t = tab do teclado (formatação)
+    printf("O estado da sua tarefa é: ");
+    if (Lt.Tarefas[ToDo].estado == 0){  
+      
+      printf(" nao iniciada");
     }
-   printf("\n");
-
+    if (Lt.Tarefas[ToDo].estado == 1){
+      printf(" em andamento");
+    }
+    if (Lt.Tarefas[ToDo].estado == 2){   
+      printf(" concluida");
+    }
+  }
+    printf("\n");
     return 0;
-}
+ }
 
 int alterar_tarefa(lista_tarefas *Lt){
   int alterar = 0;
@@ -165,28 +177,6 @@ void filtrar_por_estado(lista_tarefas Lt){
   }
   if (contador == 0){
     printf("Falha ao encontrar a tarefa(s) com essa estado :( \n ");
-  }
-}
-
-void filtrar_por_categoria(lista_tarefas Lt){
-  char filtrarCategoria[100];
-  int contador = 0;
-  printf("Digite a categoria que deseja filtrar: ");
-  scanf("%s",filtrarCategoria);
-  for (int ordem = 9; ordem >= 0 ; ordem--){
-  for (int buscarCategoria = 0; buscarCategoria < Lt.quantidade; buscarCategoria ++ ){
-
-    if (strcmp(Lt.Tarefas[buscarCategoria].categoria, filtrarCategoria) == 0){
-      if(Lt.Tarefas[buscarCategoria].prioridade == ordem){
-        contador = 1;
-        printf("\n");
-        printf("%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", buscarCategoria+1,Lt.Tarefas[buscarCategoria].categoria, Lt.Tarefas[buscarCategoria].descricao, Lt.Tarefas[buscarCategoria].prioridade, Lt.Tarefas[buscarCategoria].estado);  
-      }     
-   }
-  }
- }
-  if (contador == 0){
-    printf("Falha ao encontrar a tarefa(s) com essa categoria :( \n ");
   }
 }
 
@@ -319,7 +309,8 @@ void exportar_tarefa_prioridade_categoria(lista_tarefas Lt){
 }
 
 void print_menu(){
-    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\n6.Filtrar tarefa por estado\n7.Filtrar tarefa por categoria\n8.Filtrar tarefa por prioridade e categoria9.Exportar tarefas por prioridade\n10.Exportar tarefas por categoria\n11.Exportar tarefas por prioridade e categoria\nDigite 0 para sair </3 \n");   
+    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\n6.Filtrar tarefa por estado\n7.Filtrar tarefa por categoria\n8.Filtrar tarefa por prioridade e categoria\n9.Exportar tarefas por prioridade\n10.Exportar tarefas por categoria\n11.Exportar tarefas por prioridade e categoria\nDigite 0 para sair </3\n");   
+  printf("\n");
 }
 
 int salva_tarefa(lista_tarefas Lt, char nome[]){
@@ -343,3 +334,6 @@ int ler_arquivo(lista_tarefas *Lt, char nome[]){
     fclose(f);
     return 0;
 } 
+
+
+//printar em ordem de prioridade: fazer dentro de if (if priporidade = 1: print prioridade)
