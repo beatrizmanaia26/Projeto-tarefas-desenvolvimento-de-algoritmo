@@ -48,11 +48,12 @@ int deleta_tarefa(lista_tarefas *Lt){
         strcpy(Lt->Tarefas[search].descricao, Lt->Tarefas[search +1].descricao);   
         Lt->Tarefas[search].prioridade = Lt->Tarefas[search +1].prioridade;
         Lt->Tarefas[search].estado = Lt->Tarefas[search +1].estado; 
-        Lt->quantidade--;
     }
+    Lt->quantidade--;
     printf("Deletou com sucesso!\n");
     return 0;
 }
+
 
 //printar em ordem de prioridade: fazer dentro de if (if priporidade = 1: print prioridade)
 
