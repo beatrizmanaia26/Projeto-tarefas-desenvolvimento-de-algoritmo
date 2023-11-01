@@ -152,8 +152,26 @@ void filtrar_por_prioridade(lista_tarefas Lt){
   }
 }
 
+void filtrar_por_estado(lista_tarefas Lt){
+  int filtrarEstado;
+  int contador = 0;
+  printf("Digite o estado que deseja filtrar: ");
+  scanf("%d",&filtrarEstado);
+  for (int buscarEstado = 0; buscarEstado < Lt.quantidade; buscarEstado ++ ){
+    if (Lt.Tarefas[buscarEstado].estado == filtrarEstado){
+      contador = 1;
+      printf("\n");
+      printf("%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", buscarEstado+1,Lt.Tarefas[buscarEstado].categoria, Lt.Tarefas[buscarEstado].descricao, Lt.Tarefas[buscarEstado].prioridade, Lt.Tarefas[buscarEstado].estado);
+    }   
+  }
+  if (contador == 0){
+    printf("Falha ao encontrar a tarefa(s) com essa estado :( \n ");
+  }
+}
+
+
 void print_menu(){
-    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\nDigite 0 para sair </3 \n");   
+    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\n6.Filtrar tarefa por estado\nDigite 0 para sair </3 \n");   
 }
 
 int salva_tarefa(lista_tarefas Lt, char nome[]){
