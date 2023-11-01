@@ -170,8 +170,57 @@ void filtrar_por_estado(lista_tarefas Lt){
 }
 
 
+void filtrar_por_categoria(lista_tarefas Lt){
+  char filtrarCategoria[100];
+  int contador = 0;
+  printf("Digite a categoria que deseja filtrar: ");
+  scanf("%s",filtrarCategoria);
+  for (int ordem = 9; ordem >= 0 ; ordem--){
+  for (int buscarCategoria = 0; buscarCategoria < Lt.quantidade; buscarCategoria ++ ){
+
+    if (strcmp(Lt.Tarefas[buscarCategoria].categoria, filtrarCategoria) == 0){
+      if(Lt.Tarefas[buscarCategoria].prioridade == ordem){
+        contador = 1;
+        printf("\n");
+        printf("%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", buscarCategoria+1,Lt.Tarefas[buscarCategoria].categoria, Lt.Tarefas[buscarCategoria].descricao, Lt.Tarefas[buscarCategoria].prioridade, Lt.Tarefas[buscarCategoria].estado);  
+      }     
+   }
+  }
+ }
+  if (contador == 0){
+    printf("Falha ao encontrar a tarefa(s) com essa categoria :( \n ");
+  }
+}
+
+void filtrar_por_prioridade_categoria(lista_tarefas Lt){
+  int filtrarPrior;
+  int contador = 0;
+  printf("Digite a prioridade que deseja filtrar: ");
+  scanf("%d",&filtrarPrior);
+  
+  char filtrarCategoria[100];
+  printf("Digite a categoria que deseja filtrar: ");
+  scanf("%s",filtrarCategoria);
+  
+  if (Lt.quantidade == 0){   
+      printf("Falha ao encontrar a tarefa(s) com essa prioridade :( \n ");
+    }
+   for (int priorCateg = 0; priorCateg < Lt.quantidade; priorCateg++ ){
+     if(strcmp(Lt.Tarefas[priorCateg].categoria, filtrarCategoria) == 0){
+       if (Lt.Tarefas[priorCateg].prioridade == filtrarPrior){
+        contador = 1;
+        printf("\n");
+        printf("\n%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", priorCateg+1,Lt.Tarefas[priorCateg].categoria, Lt.Tarefas[priorCateg].descricao, Lt.Tarefas[priorCateg].prioridade, Lt.Tarefas[priorCateg].estado);
+       }
+     }
+  }
+  if (contador == 0){
+    printf("Falha ao encontrar a tarefa(s) com essa categoria e prioridade:( \n ");
+  }
+}
+
 void print_menu(){
-    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\n6.Filtrar tarefa por estado\n7.Filtrar tarefa por categoria\nDigite 0 para sair </3 \n");   
+    printf("\n1.Criar tarefa \n2.Deletar tarefa \n3.Listar tarefa\n4.Alterar Tarefa\n5.Filtrar tarefa por prioridade\n6.Filtrar tarefa por estado\n7.Filtrar tarefa por categoria\n8.Filtrar tarefa por prioridade e categoria\nDigite 0 para sair </3 \n");   
 }
 
 int salva_tarefa(lista_tarefas Lt, char nome[]){
