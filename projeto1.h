@@ -13,6 +13,7 @@ typedef struct{ //fwrite desse struct
 
 typedef enum{N_INICIADA,REALIZANDO,COMPLETA} estado;
 //int pq retorna numero (1 ou 0)
+
 int cria_tarefa(lista_tarefas *Lt);
 int deleta_tarefa(lista_tarefas *Lt);
 int listar_tarefas(lista_tarefas Lt);
@@ -27,5 +28,4 @@ void exportar_tarefa_prioridade_categoria(lista_tarefas Lt);
 void print_menu(); 
 int ler_arquivo(lista_tarefas *Lt, char nome[]);
 int salva_tarefa(lista_tarefas Lt, char nome[]);
-
 
