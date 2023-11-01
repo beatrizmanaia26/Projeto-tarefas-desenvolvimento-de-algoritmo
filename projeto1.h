@@ -18,6 +18,7 @@ int deleta_tarefa(lista_tarefas *Lt);
 int listar_tarefas(lista_tarefas Lt);
 int alterar_tarefa(lista_tarefas *Lt);
 void filtrar_por_prioridade(lista_tarefas Lt);
+void filtrar_por_estado(lista_tarefas Lt);
 void print_menu(); 
 int ler_arquivo(lista_tarefas *Lt, char nome[]);
 int salva_tarefa(lista_tarefas Lt, char nome[]);
