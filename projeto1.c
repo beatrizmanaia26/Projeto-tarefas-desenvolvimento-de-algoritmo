@@ -54,7 +54,6 @@ int deleta_tarefa(lista_tarefas *Lt){
     return 0;
 }
 
-
 //printar em ordem de prioridade: fazer dentro de if (if priporidade = 1: print prioridade)
 
 int listar_tarefas(lista_tarefas Lt){ //quando for a copia do struct usa o ponto 
@@ -169,6 +168,27 @@ void filtrar_por_estado(lista_tarefas Lt){
   }
 }
 
+void filtrar_por_categoria(lista_tarefas Lt){
+  char filtrarCategoria[100];
+  int contador = 0;
+  printf("Digite a categoria que deseja filtrar: ");
+  scanf("%s",filtrarCategoria);
+  for (int ordem = 9; ordem >= 0 ; ordem--){
+  for (int buscarCategoria = 0; buscarCategoria < Lt.quantidade; buscarCategoria ++ ){
+
+    if (strcmp(Lt.Tarefas[buscarCategoria].categoria, filtrarCategoria) == 0){
+      if(Lt.Tarefas[buscarCategoria].prioridade == ordem){
+        contador = 1;
+        printf("\n");
+        printf("%d.categoria: %s\tdescricao: %s\tprioridade: %2d\t estado: %d\t \n", buscarCategoria+1,Lt.Tarefas[buscarCategoria].categoria, Lt.Tarefas[buscarCategoria].descricao, Lt.Tarefas[buscarCategoria].prioridade, Lt.Tarefas[buscarCategoria].estado);  
+      }     
+   }
+  }
+ }
+  if (contador == 0){
+    printf("Falha ao encontrar a tarefa(s) com essa categoria :( \n ");
+  }
+}
 
 void filtrar_por_categoria(lista_tarefas Lt){
   char filtrarCategoria[100];
