@@ -1,3 +1,5 @@
+#ifndef PROJETO1_H
+#define PROJETO1_H
 
 typedef struct{
     int prioridade;
@@ -29,3 +31,5 @@ void print_menu();
 int ler_arquivo(lista_tarefas *Lt, char nome[]);
 int salva_tarefa(lista_tarefas Lt, char nome[]);
 
+//guarda de inclusao (garante que conteudo do arquivo é incluido apenas 1x em cada arquivo que o referencia)
+#endif  
